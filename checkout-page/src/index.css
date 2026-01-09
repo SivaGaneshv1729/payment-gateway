@@ -1,0 +1,250 @@
+:root {
+    --primary: #635bff;
+    /* Stripe-like Blurple */
+    --primary-hover: #4b45c6;
+    --bg-color: #f7f9fc;
+    --card-bg: #ffffff;
+    --text-dark: #0a2540;
+    --text-gray: #425466;
+    --border-color: #e6e6e6;
+    --success: #059669;
+    --error: #dc2626;
+    --radius: 8px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+}
+
+#root {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+}
+
+/* --- Card Containers (Dashboard & Checkout) --- */
+[data-test-id="dashboard"],
+[data-test-id="checkout-container"],
+[data-test-id="login-form"] {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+    max-width: 600px;
+    /* Center focused view */
+}
+
+/* Widen the dashboard specifically for the table */
+[data-test-id="dashboard"] {
+    max-width: 900px;
+}
+
+h2 {
+    color: var(--text-dark);
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+/* --- Forms & Inputs --- */
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-gray);
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    /* Fix padding issues */
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.2);
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* --- Dashboard Specifics --- */
+[data-test-id="api-credentials"] {
+    background: #f3f4f6;
+    padding: 20px;
+    border-radius: var(--radius);
+    border: 1px dashed #cbd5e1;
+    margin-bottom: 30px;
+}
+
+[data-test-id="api-credentials"] div {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+[data-test-id="api-credentials"] span {
+    font-family: 'Courier New', monospace;
+    background: #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Stats Grid */
+[data-test-id="stats-container"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+[data-test-id="stats-container"]>div {
+    background: white;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--primary);
+}
+
+/* Transactions Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+thead {
+    background-color: #f9fafb;
+    border-bottom: 2px solid var(--border-color);
+}
+
+th {
+    text-align: left;
+    padding: 12px;
+    color: var(--text-gray);
+    font-weight: 600;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+}
+
+/* Status Badges */
+[data-test-id="status"] {
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+/* --- Checkout Specifics --- */
+[data-test-id="order-summary"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+[data-test-id="order-amount"] {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+[data-test-id="payment-methods"] {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+[data-test-id="payment-methods"] button {
+    background-color: white;
+    color: var(--text-dark);
+    border: 2px solid var(--border-color);
+}
+
+[data-test-id="payment-methods"] button:focus,
+[data-test-id="payment-methods"] button:active {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: #f4f7ff;
+}
+
+/* Spinner */
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Messages */
+[data-test-id="success-state"] {
+    text-align: center;
+    color: var(--success);
+}
+
+[data-test-id="error-state"] {
+    text-align: center;
+    color: var(--error);
+}
+
+[data-test-id="processing-state"] {
+    text-align: center;
+    color: var(--text-gray);
+}
