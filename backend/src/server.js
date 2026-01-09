@@ -24,8 +24,14 @@ const generateId = (prefix) => {
 };
 
 // Validation Logic
+// Validation Logic
 const validateLuhn = (num) => {
-    let arr = (num + '').split('').reverse().map(x => parseInt(x));
+    // Remove spaces and dashes
+    const cleanNum = (num + '').replace(/[\s-]/g, '');
+    if (!/^\d+$/.test(cleanNum)) return false; // Ensure only digits
+    if (cleanNum.length < 13 || cleanNum.length > 19) return false; // Length check
+
+    let arr = cleanNum.split('').reverse().map(x => parseInt(x));
     let lastDigit = arr.splice(0, 1)[0];
     let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
     sum += lastDigit;
@@ -33,10 +39,13 @@ const validateLuhn = (num) => {
 };
 
 const getCardNetwork = (num) => {
-    if (/^4/.test(num)) return 'visa';
-    if (/^5[1-5]/.test(num)) return 'mastercard';
-    if (/^3[47]/.test(num)) return 'amex';
-    if (/^60|^65|^8[1-9]/.test(num)) return 'rupay';
+    // Remove spaces and dashes
+    const cleanNum = (num + '').replace(/[\s-]/g, '');
+
+    if (/^4/.test(cleanNum)) return 'visa';
+    if (/^5[1-5]/.test(cleanNum)) return 'mastercard';
+    if (/^3[47]/.test(cleanNum)) return 'amex';
+    if (/^60|^65|^8[1-9]/.test(cleanNum)) return 'rupay';
     return 'unknown';
 };
 
@@ -160,7 +169,7 @@ const handlePaymentCreation = async (req, res, requiresAuth) => {
 
     const payId = generateId('pay_');
     const cardNetwork = method === 'card' ? getCardNetwork(card.number) : null;
-    const cardLast4 = method === 'card' ? card.number.slice(-4) : null;
+    const cardLast4 = method === 'card' ? card.number.replace(/[\s-]/g, '').slice(-4) : null;
 
     // 3. Insert 'Processing'
     try {
