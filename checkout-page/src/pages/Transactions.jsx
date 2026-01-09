@@ -6,10 +6,17 @@ const Transactions = () => {
 
     useEffect(() => {
         // Fetch real transactions from your API
-        // Ensure your backend has an endpoint to list payments/orders for the merchant
-        fetch('http://localhost:8000/api/v1/payments/history') // You may need to create this endpoint
+        fetch('http://localhost:8000/api/v1/payments', {
+            headers: {
+                'X-Api-Key': 'key_test_abc123',
+                'X-Api-Secret': 'secret_test_xyz789'
+            }
+        })
             .then(res => res.json())
-            .then(data => setTransactions(data))
+            .then(data => {
+                if (Array.isArray(data)) setTransactions(data);
+                else console.error("Expected array, got:", data);
+            })
             .catch(err => console.error("Error fetching transactions:", err));
     }, []);
 
