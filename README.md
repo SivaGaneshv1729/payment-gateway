@@ -230,6 +230,12 @@ payment-gateway/
 | --- | --- |
 | ![Checkout](screenshots/checkout.png) | ![Success](screenshots/success.png) |
 
+
+## 🎥 Video Walkthrough
+
+Watch the full explanation of the project architecture, code structure, and live demo here:
+https://vimeo.com/1153104917?share=copy&fl=sv&fe=ci
+
 ## 📝 License
 
 This project is part of a Full-Stack Development assessment. Code is provided for educational and evaluation purposes.
