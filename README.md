@@ -233,8 +233,8 @@ payment-gateway/
 
 ## 🎥 Video Walkthrough
 
-Watch the full explanation of the project architecture, code structure, and live demo here:
-https://vimeo.com/1153104917?share=copy&fl=sv&fe=ci
+Watch the full Sproject architecture, code structure, and live demo here:
+https://drive.google.com/file/d/1cljMdL5hDeJeydbD2C7ENTlXktydOAPf/view?usp=sharing
 
 ## 📝 License
 
